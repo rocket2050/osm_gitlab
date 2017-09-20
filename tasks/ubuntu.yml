@@ -1,0 +1,22 @@
+---
+# tasks file for gitlab
+- name: Install Gitlab in Ubuntu dependencies
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+    state: latest
+  with_items:
+    - curl
+    - openssh-server
+    - ca-certificates
+
+- name: Add the GitLab package repository 
+  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
+  
+- name: Installing Package
+  apt: 
+    name: gitlab-ce
+    state: latest
+ 
+
+

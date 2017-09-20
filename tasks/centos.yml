@@ -1,0 +1,24 @@
+---
+
+- name: Install and configure the necessary dependencies
+  yum:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - curl 
+    - openssh-server
+    - openssh-clients
+    - cronie
+
+- name: Add the GitLab package repository
+  shell: curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.rpm.sh | sudo bash
+  
+
+- name: Install the GitLab package
+  yum: 
+    name: gitlab-ce
+    state: latest
+
+
+

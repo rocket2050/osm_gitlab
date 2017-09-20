@@ -1,0 +1,10 @@
+---
+
+- name: Install Gitlab in Ubuntu
+  include: ubuntu.yml
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Install Gitlab in Centos
+  include: centos.yml
+  when: ansible_distribution == 'CentOS'
+
